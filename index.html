@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jackson Kirkley | Baylor 2026</title>
+  <meta name="description" content="Jackson Kirkley is graduating and headed to Baylor University this fall to study Finance through the Business Scholars Program.">
+  <meta name="theme-color" content="#154734">
+
+  <meta property="og:title" content="Jackson Kirkley | Baylor 2026">
+  <meta property="og:description" content="Headed to Baylor University this fall to study Finance through the Business Scholars Program.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="photo-hero.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #FAF7F0;
+      --fg: #0F172A;
+      --fg-muted: rgba(15, 23, 42, 0.62);
+      --hairline: rgba(15, 23, 42, 0.08);
+      --primary: #154734;
+      --primary-deep: #0E3324;
+      --accent: #FFB81C;
+      --accent-dark: #E5A300;
+      --on-primary: #FFFFFF;
+      --on-primary-muted: rgba(255, 255, 255, 0.7);
+
+      --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+      --size-xs: 0.75rem;
+      --size-sm: 0.875rem;
+      --size-base: 1rem;
+      --size-md: 1.125rem;
+      --size-lg: 1.5rem;
+      --size-xl: 2rem;
+
+      --space-1: 0.5rem;
+      --space-2: 1rem;
+      --space-3: 1.5rem;
+      --space-4: 2rem;
+      --space-6: 3rem;
+      --space-8: 4rem;
+
+      /* Apple's expo-out easing — premium feel */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--fg);
+      font-size: var(--size-base);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    p, h1, h2, h3, figure { margin: 0; }
+
+    /* ---------- Gold stripes (top/bottom frame) ---------- */
+    .stripe {
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    /* ---------- Fixed site header (liquid-glass, scroll-aware) ---------- */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      height: 60px;
+      /* default state = over the dark hero photo */
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      transition: background 350ms var(--ease-out-quart),
+                  border-color 350ms var(--ease-out-quart),
+                  box-shadow 350ms var(--ease-out-quart);
+    }
+
+    /* Scrolled state = over cream content */
+    .site-header.is-scrolled {
+      background: rgba(250, 247, 240, 0.65);
+      border-bottom-color: var(--hairline);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    @supports not (backdrop-filter: blur(20px)) {
+      .site-header {
+        background: rgba(14, 51, 36, 0.78);
+      }
+      .site-header.is-scrolled {
+        background: rgba(250, 247, 240, 0.96);
+      }
+    }
+
+    .site-header-inner {
+      max-width: 1280px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 1.75rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .site-header-title {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 350ms var(--ease-out-quart);
+    }
+
+    .site-header-title .full,
+    .site-header-title .short {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.005em;
+    }
+
+    .site-header.is-scrolled .site-header-title {
+      color: var(--fg);
+    }
+
+    .site-header-title .sep {
+      color: var(--accent);
+      margin: 0 0.5em;
+    }
+
+    .site-header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 200ms var(--ease-out-quart),
+                  transform 200ms var(--ease-out-quart);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .site-header-cta:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .site-header-cta:active {
+      transform: translateY(0);
+    }
+
+    .site-header-cta:focus-visible {
+      outline: 1.5px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .site-header-cta-icon {
+      width: 14px;
+      height: 14px;
+      stroke-width: 1.8;
+      opacity: 0.9;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 420px) {
+      .site-header-title .full {
+        display: none;
+      }
+      .site-header-title .short {
+        display: inline;
+      }
+      .site-header-cta {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (min-width: 421px) {
+      .site-header-title .short {
+        display: none;
+      }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--primary-deep);
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 28%;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 40%,
+        rgba(0, 0, 0, 0.42) 65%,
+        rgba(14, 51, 36, 0.86) 78%,
+        rgba(14, 51, 36, 0) 100%
+      );
+      z-index: 1;
+      mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 720px;
+      padding: 0 clamp(1.5rem, 5vw, 2.5rem) clamp(7rem, 22vh, 11rem);
+      text-align: center;
+      color: var(--on-primary);
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(3.25rem, 13vw, 7rem);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      color: var(--on-primary);
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.22);
+      text-wrap: balance;
+      max-width: 11ch;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: hero-enter 1.4s var(--ease-out-expo) 200ms forwards;
+    }
+
+    @keyframes hero-enter {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---------- Content (cream surface) ---------- */
+    .content {
+      max-width: 38rem;
+      margin: 0 auto;
+      padding: clamp(4rem, 11vh, 7.5rem) clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .content-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 7vh, 4rem);
+    }
+
+    .school-name {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(1.875rem, 5.5vw, 2.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .school-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--size-xs);
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    .school-subtitle .dot {
+      color: var(--accent);
+      margin: 0 0.5em;
+    }
+
+    /* ---------- School details (centered tabular) ---------- */
+    .details {
+      margin-bottom: clamp(3rem, 8vh, 5rem);
+      padding: clamp(1.5rem, 4vh, 2rem) 0;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: clamp(1.5rem, 4vw, 2.5rem);
+      row-gap: clamp(0.875rem, 2vh, 1.25rem);
+      justify-content: center;
+      align-items: baseline;
+    }
+
+    .detail-label {
+      font-family: var(--font-body);
+      font-size: var(--size-xs);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      text-align: right;
+    }
+
+    .detail-value {
+      font-family: var(--font-body);
+      font-size: var(--size-md);
+      font-weight: 500;
+      color: var(--fg);
+      text-align: left;
+    }
+
+    /* ---------- Personal note ---------- */
+    .note {
+      font-family: var(--font-body);
+      font-size: var(--size-md);
+      line-height: 1.7;
+      color: var(--fg);
+    }
+
+    .note p + p {
+      margin-top: 1.25rem;
+    }
+
+    /* ---------- Carousel ---------- */
+    .carousel-section {
+      background: var(--bg);
+      padding-top: clamp(2rem, 6vh, 4rem);
+      padding-bottom: clamp(3rem, 8vh, 5rem);
+    }
+
+    .carousel-heading {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: var(--size-md);
+      color: var(--fg-muted);
+      text-align: center;
+      margin-bottom: clamp(1.5rem, 4vh, 2.25rem);
+      padding: 0 var(--space-3);
+    }
+
+    .carousel {
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.75rem);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-padding-inline: 12vw;
+      padding: var(--space-1) 12vw clamp(1rem, 3vh, 1.5rem);
+      scrollbar-width: none;
+    }
+
+    .carousel::-webkit-scrollbar { display: none; }
+
+    /* Show a thin scrollbar on desktop so users see the affordance */
+    @media (hover: hover) and (pointer: fine) {
+      .carousel {
+        scrollbar-width: thin;
+        scrollbar-color: var(--hairline) transparent;
+        padding-bottom: clamp(0.75rem, 2.5vh, 1.25rem);
+      }
+      .carousel::-webkit-scrollbar {
+        display: block;
+        height: 6px;
+      }
+      .carousel::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .carousel::-webkit-scrollbar-thumb {
+        background: var(--hairline);
+        border-radius: 999px;
+      }
+      .carousel::-webkit-scrollbar-thumb:hover {
+        background: rgba(15, 23, 42, 0.18);
+      }
+    }
+
+    .carousel-item {
+      flex: 0 0 76vw;
+      max-width: 380px;
+      aspect-ratio: 3 / 4;
+      border-radius: 8px;
+      overflow: hidden;
+      scroll-snap-align: center;
+      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.10);
+      background: #ffffff;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 700ms var(--ease-out-expo);
+    }
+
+    .carousel-item:hover img {
+      transform: scale(1.04);
+    }
+
+    @media (min-width: 720px) {
+      .carousel {
+        scroll-padding-inline: max(2rem, calc((100% - 1000px) / 2));
+        padding-left: max(2rem, calc((100% - 1000px) / 2));
+        padding-right: max(2rem, calc((100% - 1000px) / 2));
+      }
+      .carousel-item {
+        flex: 0 0 300px;
+      }
+    }
+
+    /* ---------- CTA section (with macrophotography Baylor wordmark inlay) ---------- */
+    .cta-section {
+      background: var(--primary);
+      padding: clamp(6rem, 14vh, 9rem) clamp(1.5rem, 5vw, 2rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* Macrophotography Baylor bear inlay: massive, overflowing, pressed into the green */
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(38rem, 165vw, 92rem);
+      aspect-ratio: 1849 / 1041;
+      transform: translate(-50%, -50%);
+      background-image: url('baylor-bear.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
+      /* hue-rotate shifts gold → green; saturate/brightness mute it for monochrome */
+      filter: blur(0.5px) hue-rotate(95deg) saturate(70%) brightness(0.85);
+      /* clip-path hides the TM in the bottom-right corner (private use) */
+      clip-path: polygon(0 0, 100% 0, 100% 84%, 88% 92%, 88% 100%, 0 100%);
+      pointer-events: none;
+      z-index: -1;
+      user-select: none;
+    }
+
+    /* subtle gold rim-light glow off-center, simulating macrophoto key light */
+    .cta-section::after {
+      content: "";
+      position: absolute;
+      top: 30%;
+      left: 40%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 184, 28, 0.10) 0%,
+        rgba(255, 184, 28, 0) 65%
+      );
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(24px);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: var(--primary);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      padding: 0.875rem 1.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: background 250ms var(--ease-out-quart),
+                  transform 250ms var(--ease-out-quart);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .cta:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .cta:active {
+      transform: translateY(0);
+    }
+
+    .cta:focus-visible {
+      outline: 1.5px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .cta-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      stroke-width: 1.6;
+      opacity: 0.85;
+    }
+
+    .cta-footer {
+      margin-top: var(--space-4);
+      font-family: var(--font-body);
+      font-size: var(--size-xs);
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--on-primary-muted);
+    }
+
+    /* ---------- Skip-to-content link ---------- */
+    .skip-link {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 100;
+      padding: 0.625rem 1rem;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-family: var(--font-body);
+      font-size: var(--size-sm);
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+      transform: translateY(-150%);
+      transition: transform 200ms var(--ease-out-quart);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ---------- Scroll-triggered entrance ---------- */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1100ms var(--ease-out-expo),
+                  transform 1100ms var(--ease-out-expo);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    [data-reveal].is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+      will-change: auto;
+    }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero-name,
+      [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-header-title" href="#top">
+        <span class="full">Jackson Kirkley<span class="sep" aria-hidden="true">·</span>Baylor 2026</span>
+        <span class="short">Jackson Kirkley</span>
+      </a>
+      <a class="site-header-cta" href="https://venmo.com/u/jacksonkirkley" target="_blank" rel="noopener noreferrer" aria-label="Support Jackson on Venmo">
+        <svg class="site-header-cta-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+        </svg>
+        Support
+      </a>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <img
+      class="hero-image"
+      src="photo-hero-2000.jpg"
+      srcset="photo-hero-1200.jpg 1200w, photo-hero-2000.jpg 2000w, photo-hero.jpg 2624w"
+      sizes="100vw"
+      alt="Jackson Kirkley in his Rio Americano letterman jacket at sunset"
+      fetchpriority="high"
+      decoding="async"
+      onerror="this.style.display='none'">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 class="hero-name">Jackson Kirkley</h1>
+    </div>
+  </section>
+
+  <main class="content" id="content">
+    <header class="content-header">
+      <h2 class="school-name" data-reveal>Baylor University</h2>
+      <p class="school-subtitle" data-reveal style="--reveal-delay: 120ms">Class of 2026<span class="dot" aria-hidden="true">·</span>Finance</p>
+    </header>
+
+    <section class="details" aria-label="School details" data-reveal style="--reveal-delay: 80ms">
+      <span class="detail-label">Major</span>
+      <span class="detail-value">Finance</span>
+      <span class="detail-label">Program</span>
+      <span class="detail-value">Business Scholars</span>
+      <span class="detail-label">Move-in</span>
+      <span class="detail-value">August 24, 2026</span>
+    </section>
+
+    <div class="note">
+      <p data-reveal>This August I'll be heading to Baylor to study Finance through the Business Scholars Program. It's a goal I've been working toward for years, and I genuinely couldn't have reached it without God's hand on every step and the people He's surrounded me with.</p>
+      <p data-reveal style="--reveal-delay: 140ms">Thank you for believing in me, praying for me, and being part of this chapter. I can't wait to see what God does with what comes next.</p>
+    </div>
+  </main>
+
+  <section class="carousel-section" aria-label="More photos">
+    <p class="carousel-heading" data-reveal>a few more from senior year</p>
+    <div class="carousel" tabindex="0" aria-label="Senior photos, swipe horizontally" data-reveal style="--reveal-delay: 120ms">
+      <figure class="carousel-item">
+        <img src="photo-1.jpg" alt="Jackson in a field at sunset" loading="lazy" decoding="async">
+      </figure>
+      <figure class="carousel-item">
+        <img src="photo-2.jpg" alt="Jackson with an acoustic guitar by the water" loading="lazy" decoding="async">
+      </figure>
+      <figure class="carousel-item">
+        <img src="photo-3.jpg" alt="Jackson at golden hour by a lake, looking ahead" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <a class="cta" href="https://venmo.com/u/jacksonkirkley" target="_blank" rel="noopener noreferrer" data-reveal>
+      <svg class="cta-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+      </svg>
+      Help me get started at Baylor
+    </a>
+    <p class="cta-footer" data-reveal style="--reveal-delay: 100ms">@jacksonkirkley on Venmo</p>
+  </section>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <script>
+    // Entrance reveals for content sections
+    (() => {
+      const targets = document.querySelectorAll('[data-reveal]');
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach(el => el.classList.add('is-revealed'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      targets.forEach(el => observer.observe(el));
+    })();
+
+    // Header swaps from dark-glass to cream-glass once scrolled past hero
+    (() => {
+      const header = document.querySelector('.site-header');
+      const hero = document.querySelector('.hero');
+      if (!header || !hero || !('IntersectionObserver' in window)) return;
+      const observer = new IntersectionObserver(([entry]) => {
+        header.classList.toggle('is-scrolled', !entry.isIntersecting);
+      }, { rootMargin: '-56px 0px 0px 0px', threshold: 0 });
+      observer.observe(hero);
+    })();
+  </script>
+</body>
+</html>
