@@ -238,6 +238,25 @@
 - [x] 25.4 Revert hero overlay gradient to the simpler version (no cream stops needed since mask handles the fade)
 - [x] 25.5 Keep the master source as `photo-hero.jpg` (6MB, no re-encoding) plus the higher-quality srcset variants (1200w q90, 2000w q92)
 
+## 26. Production deployment to GitHub Pages
+
+- [x] 26.1 Install `gh` CLI via Homebrew, initialize the project as a git repo with `.gitignore` (excluding `.DS_Store`, IDE files, `node_modules`)
+- [x] 26.2 Initial commit covering all files (8 site assets + OpenSpec change folder)
+- [x] 26.3 Authenticate with GitHub via `gh auth login --web` (jacksonkirkley account)
+- [x] 26.4 Create repo `jacksonkirkley/graduation-announcement`, push main branch (initially private)
+- [x] 26.5 Discover that GitHub Pages on free plan requires public repos — make the repo public via `gh repo edit --visibility public`
+- [x] 26.6 Enable Pages via API (`POST /repos/.../pages` with source main branch root)
+- [x] 26.7 Poll build to completion; verify live URL returns HTTP 200 at `https://jacksonkirkley.github.io/graduation-announcement/`
+- [x] 26.8 Verify all critical assets serve over HTTPS (index.html, photo-hero-2000.jpg, baylor-bear.png, photo-1.jpg — all 200 OK)
+- [x] 26.9 Generate QR codes via `qrencode`: high error correction (H, 30% recovery), 980×980 PNG, 4-module quiet zone. Two versions:
+    - `baylor-qr.png` — Baylor green `#154734` on white (branded)
+    - `baylor-qr-black.png` — Black on white (max scan reliability)
+- [x] 26.10 Commit the QR PNGs to the repo for archival
+
+## Status — SHIPPED
+
+Page is live at **https://jacksonkirkley.github.io/graduation-announcement/**. QR codes in project root ready to drop into the back of the printed card. After printing, this OpenSpec change can be archived via `openspec archive redesign-baylor-landing-page`.
+
 ## Status — ready to ship
 
 All 17 task groups complete. The change `redesign-baylor-landing-page` has produced an `index.html` plus 4 photo assets at the project root. Next session's work is **production deployment** (not part of this change): Netlify drag-and-drop, QR code generation against the deployed URL, and printing. After deployment, this change should be archived via `openspec archive redesign-baylor-landing-page`.
