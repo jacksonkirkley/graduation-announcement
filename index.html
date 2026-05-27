@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jackson Kirkley | Baylor 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Jackson Kirkley | Baylor 2030</title>
   <meta name="description" content="Jackson Kirkley is graduating and headed to Baylor University this fall to study Finance through the Business Scholars Program.">
   <meta name="theme-color" content="#154734">
 
-  <meta property="og:title" content="Jackson Kirkley | Baylor 2026">
+  <meta property="og:title" content="Jackson Kirkley | Baylor 2030">
   <meta property="og:description" content="Headed to Baylor University this fall to study Finance through the Business Scholars Program.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="photo-hero.jpg">
@@ -82,7 +82,8 @@
       left: 0;
       right: 0;
       z-index: 50;
-      height: 60px;
+      height: calc(60px + env(safe-area-inset-top));
+      padding-top: env(safe-area-inset-top);
       /* default state = over the dark hero photo */
       background: rgba(255, 255, 255, 0.10);
       backdrop-filter: blur(28px) saturate(200%);
@@ -161,6 +162,7 @@
       font-weight: 500;
       letter-spacing: 0.01em;
       padding: 0.5rem 1rem;
+      min-height: 36px;
       border-radius: 999px;
       text-decoration: none;
       flex-shrink: 0;
@@ -199,8 +201,9 @@
         display: inline;
       }
       .site-header-cta {
-        padding: 0.5rem 0.875rem;
-        font-size: 0.75rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.8125rem;
+        min-height: 44px;
       }
     }
 
@@ -549,16 +552,6 @@
       opacity: 0.85;
     }
 
-    .cta-footer {
-      margin-top: var(--space-4);
-      font-family: var(--font-body);
-      font-size: var(--size-xs);
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--on-primary-muted);
-    }
-
     /* ---------- Skip-to-content link ---------- */
     .skip-link {
       position: absolute;
@@ -621,7 +614,7 @@
   <header class="site-header">
     <div class="site-header-inner">
       <a class="site-header-title" href="#top">
-        <span class="full">Jackson Kirkley<span class="sep" aria-hidden="true">·</span>Baylor 2026</span>
+        <span class="full">Jackson Kirkley<span class="sep" aria-hidden="true">·</span>Baylor 2030</span>
         <span class="short">Jackson Kirkley</span>
       </a>
       <a class="site-header-cta" href="https://venmo.com/u/jacksonkirkley" target="_blank" rel="noopener noreferrer" aria-label="Support Jackson on Venmo">
@@ -652,7 +645,7 @@
   <main class="content" id="content">
     <header class="content-header">
       <h2 class="school-name" data-reveal>Baylor University</h2>
-      <p class="school-subtitle" data-reveal style="--reveal-delay: 120ms">Class of 2026<span class="dot" aria-hidden="true">·</span>Finance</p>
+      <p class="school-subtitle" data-reveal style="--reveal-delay: 120ms">Class of 2030<span class="dot" aria-hidden="true">·</span>Finance</p>
     </header>
 
     <section class="details" aria-label="School details" data-reveal style="--reveal-delay: 80ms">
@@ -692,7 +685,6 @@
       </svg>
       Help me get started at Baylor
     </a>
-    <p class="cta-footer" data-reveal style="--reveal-delay: 100ms">@jacksonkirkley on Venmo</p>
   </section>
 
   <div class="stripe" aria-hidden="true"></div>
