@@ -238,6 +238,15 @@
       -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
     }
 
+    /* On landscape viewports the desktop crop is already framed face → wordmark.
+       Pull the focal point slightly down so any vertical overflow trims tree
+       canopy at the top instead of the clean hoodie zone the name sits on. */
+    @media (min-aspect-ratio: 1/1) {
+      .hero-image {
+        object-position: center 65%;
+      }
+    }
+
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -657,15 +666,21 @@
   </header>
 
   <section class="hero" id="top">
-    <img
-      class="hero-image"
-      src="photo-hero-2000.jpg?v=2"
-      srcset="photo-hero-1200.jpg?v=2 1200w, photo-hero-2000.jpg?v=2 2000w, photo-hero.jpg?v=2 2624w"
-      sizes="100vw"
-      alt="Jackson Kirkley in a Baylor hoodie, framed by green trees"
-      fetchpriority="high"
-      decoding="async"
-      onerror="this.style.display='none'">
+    <picture>
+      <source
+        media="(min-aspect-ratio: 1/1)"
+        srcset="photo-hero-desktop-1600.jpg 1600w, photo-hero-desktop-2400.jpg 2400w, photo-hero-desktop.jpg 2624w"
+        sizes="100vw">
+      <img
+        class="hero-image"
+        src="photo-hero-2000.jpg?v=2"
+        srcset="photo-hero-1200.jpg?v=2 1200w, photo-hero-2000.jpg?v=2 2000w, photo-hero.jpg?v=2 2624w"
+        sizes="100vw"
+        alt="Jackson Kirkley in a Baylor hoodie, framed by green trees"
+        fetchpriority="high"
+        decoding="async"
+        onerror="this.style.display='none'">
+    </picture>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
       <h1 class="hero-name">Jackson Kirkley</h1>
