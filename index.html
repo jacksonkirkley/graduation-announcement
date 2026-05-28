@@ -379,95 +379,6 @@
       margin-top: 1.25rem;
     }
 
-    /* ---------- Carousel ---------- */
-    .carousel-section {
-      background: var(--bg);
-      padding-top: clamp(2rem, 6vh, 4rem);
-      padding-bottom: clamp(3rem, 8vh, 5rem);
-    }
-
-    .carousel-heading {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 500;
-      font-size: var(--size-md);
-      color: var(--fg-muted);
-      text-align: center;
-      margin-bottom: clamp(1.5rem, 4vh, 2.25rem);
-      padding: 0 var(--space-3);
-    }
-
-    .carousel {
-      display: flex;
-      gap: clamp(1rem, 2vw, 1.75rem);
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scroll-padding-inline: 12vw;
-      padding: var(--space-1) 12vw clamp(1rem, 3vh, 1.5rem);
-      scrollbar-width: none;
-    }
-
-    .carousel::-webkit-scrollbar { display: none; }
-
-    /* Show a thin scrollbar on desktop so users see the affordance */
-    @media (hover: hover) and (pointer: fine) {
-      .carousel {
-        scrollbar-width: thin;
-        scrollbar-color: var(--hairline) transparent;
-        padding-bottom: clamp(0.75rem, 2.5vh, 1.25rem);
-      }
-      .carousel::-webkit-scrollbar {
-        display: block;
-        height: 6px;
-      }
-      .carousel::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .carousel::-webkit-scrollbar-thumb {
-        background: var(--hairline);
-        border-radius: 999px;
-      }
-      .carousel::-webkit-scrollbar-thumb:hover {
-        background: rgba(15, 23, 42, 0.18);
-      }
-    }
-
-    .carousel-item {
-      flex: 0 0 76vw;
-      max-width: 380px;
-      aspect-ratio: 3 / 4;
-      border-radius: 8px;
-      overflow: hidden;
-      scroll-snap-align: center;
-      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.10);
-      background: #ffffff;
-    }
-
-    .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 700ms var(--ease-out-expo);
-    }
-
-    .carousel-item:hover img {
-      transform: scale(1.04);
-    }
-
-    @media (min-width: 720px) {
-      .carousel {
-        scroll-padding-inline: max(2rem, calc((100% - 1000px) / 2));
-        padding-left: max(2rem, calc((100% - 1000px) / 2));
-        padding-right: max(2rem, calc((100% - 1000px) / 2));
-      }
-      .carousel-item {
-        flex: 0 0 300px;
-      }
-    }
-
     /* ---------- CTA section (with macrophotography Baylor wordmark inlay) ---------- */
     .cta-section {
       background: var(--primary);
@@ -561,6 +472,38 @@
       flex-shrink: 0;
       stroke-width: 1.6;
       opacity: 0.85;
+    }
+
+    /* ---------- Sic 'Em sign-off (replaces the old photo carousel) ---------- */
+    .signoff {
+      background: var(--bg);
+      text-align: center;
+      padding: clamp(3.5rem, 11vh, 7rem) clamp(1.5rem, 5vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .signoff-cry {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(3.25rem, 15vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.015em;
+      color: var(--primary);
+    }
+
+    .signoff-bears {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--size-sm);
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      /* nudge right to optically center despite trailing letter-spacing */
+      text-indent: 0.5em;
+      color: var(--fg-muted);
     }
 
     /* ---------- Skip-to-content link ---------- */
@@ -699,7 +642,7 @@
       <span class="detail-label">Program</span>
       <span class="detail-value">Business Scholars</span>
       <span class="detail-label">Move-in</span>
-      <span class="detail-value">August 24, 2026</span>
+      <span class="detail-value">August 20, 2026</span>
     </section>
 
     <div class="note" data-reveal-children>
@@ -708,19 +651,9 @@
     </div>
   </main>
 
-  <section class="carousel-section" aria-label="More photos">
-    <p class="carousel-heading" data-reveal>a few more from senior year</p>
-    <div class="carousel" tabindex="0" aria-label="Senior photos, swipe horizontally" data-reveal-children>
-      <figure class="carousel-item">
-        <img src="photo-2.jpg" alt="Jackson with an acoustic guitar by the water" loading="lazy" decoding="async">
-      </figure>
-      <figure class="carousel-item">
-        <img src="photo-1.jpg?v=2" alt="Jackson in a navy suit at golden hour by the creek" loading="lazy" decoding="async">
-      </figure>
-      <figure class="carousel-item">
-        <img src="photo-3.jpg" alt="Jackson at golden hour by a lake, looking ahead" loading="lazy" decoding="async">
-      </figure>
-    </div>
+  <section class="signoff" aria-label="Sic &rsquo;Em Bears" data-reveal-children>
+    <span class="signoff-cry">Sic &rsquo;Em</span>
+    <span class="signoff-bears">Bears</span>
   </section>
 
   <section class="cta-section">
