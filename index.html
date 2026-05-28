@@ -594,6 +594,32 @@
       will-change: auto;
     }
 
+    /* Stagger children of a wrapper. Each child fades up with a slight delay. */
+    [data-reveal-children] > * {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 1000ms var(--ease-out-expo),
+                  transform 1000ms var(--ease-out-expo);
+      will-change: opacity, transform;
+    }
+
+    [data-reveal-children].is-revealed > * {
+      opacity: 1;
+      transform: translateY(0);
+      will-change: auto;
+    }
+
+    [data-reveal-children].is-revealed > *:nth-child(2) { transition-delay: 90ms; }
+    [data-reveal-children].is-revealed > *:nth-child(3) { transition-delay: 180ms; }
+    [data-reveal-children].is-revealed > *:nth-child(4) { transition-delay: 270ms; }
+    [data-reveal-children].is-revealed > *:nth-child(5) { transition-delay: 360ms; }
+    [data-reveal-children].is-revealed > *:nth-child(6) { transition-delay: 450ms; }
+
+    /* Hero content gets parallaxed by scroll JS — promote to its own layer. */
+    .hero-content {
+      will-change: transform, opacity;
+    }
+
     /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -603,7 +629,9 @@
         scroll-behavior: auto !important;
       }
       .hero-name,
-      [data-reveal] {
+      .hero-content,
+      [data-reveal],
+      [data-reveal-children] > * {
         opacity: 1 !important;
         transform: none !important;
       }
@@ -634,7 +662,7 @@
       src="photo-hero-2000.jpg"
       srcset="photo-hero-1200.jpg 1200w, photo-hero-2000.jpg 2000w, photo-hero.jpg 2624w"
       sizes="100vw"
-      alt="Jackson Kirkley in his Rio Americano letterman jacket at sunset"
+      alt="Jackson Kirkley in a Baylor hoodie, framed by green trees"
       fetchpriority="high"
       decoding="async"
       onerror="this.style.display='none'">
@@ -645,9 +673,9 @@
   </section>
 
   <main class="content" id="content">
-    <header class="content-header">
-      <h2 class="school-name" data-reveal>Baylor University</h2>
-      <p class="school-subtitle" data-reveal style="--reveal-delay: 120ms">Class of 2030<span class="dot" aria-hidden="true">·</span>Finance</p>
+    <header class="content-header" data-reveal-children>
+      <h2 class="school-name">Baylor University</h2>
+      <p class="school-subtitle">Class of 2030<span class="dot" aria-hidden="true">·</span>Finance</p>
     </header>
 
     <section class="details" aria-label="School details" data-reveal style="--reveal-delay: 80ms">
@@ -659,20 +687,20 @@
       <span class="detail-value">August 24, 2026</span>
     </section>
 
-    <div class="note">
-      <p data-reveal>This August I'll be heading to Baylor to study Finance through the Business Scholars Program. It's a goal I've been working toward for years, and I genuinely couldn't have reached it without God's hand on every step and the people He's surrounded me with.</p>
-      <p data-reveal style="--reveal-delay: 140ms">Thank you for believing in me, praying for me, and being part of this chapter. I can't wait to see what God does with what comes next.</p>
+    <div class="note" data-reveal-children>
+      <p>This August I'll be heading to Baylor to study Finance through the Business Scholars Program. It's a goal I've been working toward for years, and I genuinely couldn't have reached it without God's hand on every step and the people He's surrounded me with.</p>
+      <p>Thank you for believing in me, praying for me, and being part of this chapter. I can't wait to see what God does with what comes next.</p>
     </div>
   </main>
 
   <section class="carousel-section" aria-label="More photos">
     <p class="carousel-heading" data-reveal>a few more from senior year</p>
-    <div class="carousel" tabindex="0" aria-label="Senior photos, swipe horizontally" data-reveal style="--reveal-delay: 120ms">
+    <div class="carousel" tabindex="0" aria-label="Senior photos, swipe horizontally" data-reveal-children>
       <figure class="carousel-item">
         <img src="photo-2.jpg" alt="Jackson with an acoustic guitar by the water" loading="lazy" decoding="async">
       </figure>
       <figure class="carousel-item">
-        <img src="photo-1.jpg" alt="Jackson in a Baylor hoodie at golden hour" loading="lazy" decoding="async">
+        <img src="photo-1.jpg" alt="Jackson in a navy suit at golden hour by the creek" loading="lazy" decoding="async">
       </figure>
       <figure class="carousel-item">
         <img src="photo-3.jpg" alt="Jackson at golden hour by a lake, looking ahead" loading="lazy" decoding="async">
@@ -692,9 +720,9 @@
   <div class="stripe" aria-hidden="true"></div>
 
   <script>
-    // Entrance reveals for content sections
+    // Entrance reveals — single elements (data-reveal) + staggered children (data-reveal-children)
     (() => {
-      const targets = document.querySelectorAll('[data-reveal]');
+      const targets = document.querySelectorAll('[data-reveal], [data-reveal-children]');
       if (!('IntersectionObserver' in window)) {
         targets.forEach(el => el.classList.add('is-revealed'));
         return;
@@ -719,6 +747,46 @@
         header.classList.toggle('is-scrolled', !entry.isIntersecting);
       }, { rootMargin: '-56px 0px 0px 0px', threshold: 0 });
       observer.observe(hero);
+    })();
+
+    // Hero name fly-out: scroll-driven parallax + fade on the hero content block
+    (() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (prefersReducedMotion.matches) return;
+
+      const hero = document.querySelector('.hero');
+      const heroContent = document.querySelector('.hero-content');
+      if (!hero || !heroContent) return;
+
+      let heroHeight = hero.offsetHeight;
+      let ticking = false;
+
+      function update() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        // 0 at top, 1 by the time we've scrolled one hero-height down
+        const raw = scrollY / heroHeight;
+        // Slight acceleration so the name finishes leaving by ~70% scroll
+        const t = Math.min(Math.max(raw * 1.35, 0), 1);
+        // translate3d forces compositor + GPU; opacity stays cheap
+        heroContent.style.transform = `translate3d(0, ${-t * 140}px, 0)`;
+        heroContent.style.opacity = String(1 - t);
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', () => {
+        heroHeight = hero.offsetHeight;
+        update();
+      }, { passive: true });
+
+      update();
     })();
   </script>
 </body>
