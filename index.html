@@ -151,59 +151,12 @@
       margin: 0 0.5em;
     }
 
-    .site-header-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--accent);
-      color: var(--primary);
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      padding: 0.5rem 1rem;
-      min-height: 36px;
-      border-radius: 999px;
-      text-decoration: none;
-      flex-shrink: 0;
-      transition: background 200ms var(--ease-out-quart),
-                  transform 200ms var(--ease-out-quart);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .site-header-cta:hover {
-      background: var(--accent-dark);
-      transform: translateY(-1px);
-    }
-
-    .site-header-cta:active {
-      transform: translateY(0);
-    }
-
-    .site-header-cta:focus-visible {
-      outline: 1.5px solid var(--primary);
-      outline-offset: 3px;
-    }
-
-    .site-header-cta-icon {
-      width: 14px;
-      height: 14px;
-      stroke-width: 1.8;
-      opacity: 0.9;
-      flex-shrink: 0;
-    }
-
     @media (max-width: 420px) {
       .site-header-title .full {
         display: none;
       }
       .site-header-title .short {
         display: inline;
-      }
-      .site-header-cta {
-        padding: 0.75rem 1rem;
-        font-size: 0.8125rem;
-        min-height: 44px;
       }
     }
 
@@ -619,12 +572,6 @@
       <a class="site-header-title" href="#top">
         <span class="full">Jackson Kirkley<span class="sep" aria-hidden="true">·</span>Baylor 2030</span>
         <span class="short">Jackson Kirkley</span>
-      </a>
-      <a class="site-header-cta" href="https://venmo.com/u/jacksonkirkley" target="_blank" rel="noopener noreferrer" aria-label="Support Jackson on Venmo">
-        <svg class="site-header-cta-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-        </svg>
-        Support
       </a>
     </div>
   </header>
